@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YAM Inventory & Borrowing</title>
+  <title>YAM Digital Inventory</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -180,7 +180,7 @@
 
   <div class="header">
     <h1><img src="ESCM Logo.png" alt="ESCM Logo" style="height: 32px; vertical-align: middle; margin-right: 8px;">Young Adult Ministry</h1>
-    <p>Inventory & Borrowing</p>
+    <p>Digital Inventory </p>
   </div>
 
   <div class="nav">
@@ -226,7 +226,7 @@
       <h2><i class="ti ti-arrow-up-right" style="font-size:16px; vertical-align:-2px; margin-right:6px; color:#185FA5;"></i>Borrow item</h2>
       <div class="field">
         <label>Item <span class="required">*</span></label>
-        <select id="borrow-item"><option value="">— select item —</option></select>
+        <select id="borrow-item"><option value="">- select an item —</option></select>
       </div>
       <div class="field">
         <label>Quantity <span class="required">*</span></label>
@@ -240,7 +240,7 @@
         <label>Contact number <span class="required">*</span></label>
         <input type="tel" id="borrow-contact" placeholder="e.g. +4917612345678" pattern="\+[0-9]{9,14}" title="Enter country code followed by number, no spaces or dashes. E.g. +4917612345678" />
       </div>
-      <button class="submit-btn" onclick="submitBorrow()">Confirm borrow</button>
+      <button class="submit-btn" onclick="submitBorrow()">Confirm Borrow</button>
     </div>
   </div>
 
@@ -260,7 +260,7 @@
         <label>Comments (optional)</label>
         <input type="text" id="return-comments" placeholder="e.g. one racket has damage" />
       </div>
-      <button class="submit-btn" onclick="submitReturn()">Confirm return</button>
+      <button class="submit-btn" onclick="submitReturn()">Confirm Return</button>
     </div>
   </div>
 
@@ -280,7 +280,7 @@
       <h2><i class="ti ti-calendar-plus" style="font-size:16px; vertical-align:-2px; margin-right:6px; color:#185FA5;"></i>Book for an event</h2>
       <div class="field">
         <label>Item <span class="required">*</span></label>
-        <select id="book-item"><option value="">— select item —</option></select>
+        <select id="book-item"><option value="">— select an item —</option></select>
       </div>
       <div class="field">
         <label>Quantity <span class="required">*</span></label>
@@ -522,7 +522,7 @@ return `
     const contact = document.getElementById('book-contact').value.trim();
     const date = document.getElementById('book-date').value;
     if (!item || !name || !qty || !contact || !date) { showToast('Please fill in all required fields'); return; }
-    const phoneRegex = /^\+[0-9]{9,14}$/;
+    const phoneRegex = /^\+[0-9\s().-]{8,25}$/; 
     if (!phoneRegex.test(contact)) { showToast('Enter number with country code, no spaces. E.g. +4917612345678'); return; }
     btn.disabled = true;
     btn.textContent = 'Submitting...';
